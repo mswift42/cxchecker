@@ -19,9 +19,9 @@ type Result struct {
 	Response struct {
 		Data struct {
 			Boxes []struct {
-				BoxName   string `json:"boxName"`
-				BoxId     string `json:"boxId"`
-				SellPrice int    `json:"sellPrice"`
+				BoxName   string  `json:"boxName"`
+				BoxId     string  `json:"boxId"`
+				SellPrice float64 `json:"sellPrice"`
 				ImageUrls struct {
 					Medium string `json:"large"`
 				} `json:"imageUrls"`
@@ -53,18 +53,18 @@ func productUrl(id string) string {
 	return "https://uk.webuy.com/product-detail?id=" + id
 }
 
-func newQueryResult(title, thumbnail string, price int, description, url string) *QueryResult {
+func newQueryResult(title, thumbnail string, price float64, description, url string) *QueryResult {
 	produrl := productUrl(url)
 	thumb := strings.Replace(thumbnail, " ", "", -1)
 	return &QueryResult{title, thumb, price, "", produrl}
 }
 
 type QueryResult struct {
-	Title       string `json:"title"`
-	Thumbnail   string `json:"thumbnail"`
-	Price       int    `json:"price"`
-	Description string `json:"description"`
-	URL         string `json:"url"`
+	Title       string  `json:"title"`
+	Thumbnail   string  `json:"thumbnail"`
+	Price       float64 `json:"price"`
+	Description string  `json:"description"`
+	URL         string  `json:"url"`
 }
 
 func getResults(w http.ResponseWriter, r *http.Request) {
