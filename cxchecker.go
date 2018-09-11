@@ -55,7 +55,7 @@ func productUrl(id string) string {
 
 func newQueryResult(title, thumbnail string, price float64, description, url string) *QueryResult {
 	produrl := productUrl(url)
-	thumb := strings.Replace(thumbnail, " ", "", -1)
+	thumb := strings.Replace(thumbnail, " ", "%20", -1)
 	return &QueryResult{title, thumb, price, "", produrl}
 }
 
